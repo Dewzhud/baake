@@ -1,0 +1,135 @@
+-- Set RavenB4Started to true to indicate that RavenB4 has started
+shared.RavenB4Started = true
+
+
+local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20Main%20Loader'))()
+local function OnGameLoaded()
+    
+Module = Blatant:CreateToggle({
+    Name = "40 grav",
+    StartingState = false,
+    Callback = function(State)
+        game.Workspace.Gravity = 25
+ end
+})
+
+
+local GodModeR6Enabled = false
+
+-- Variable to store the state of God Mode for R15
+local GodModeR15Enabled = false
+
+-- Function to be executed when the game is loaded
+local function OnGameLoaded()
+    -- Additional code that you want to execute when the game is loaded
+    print("Game is loaded.")
+    
+    -- Check if God Mode for R6 is enabled and execute accordingly
+    if GodModeR6Enabled then
+        EnableGodModeR6()
+    else
+        DisableGodModeR6()
+    end
+
+    -- Check if God Mode for R15 is enabled and execute accordingly
+    if GodModeR15Enabled then
+        EnableGodModeR15()
+    else
+        DisableGodModeR15()
+    end
+end
+
+-- Function to enable God Mode for R6
+local function EnableGodModeR6()
+    -- Add code to enable God Mode for R6 here
+    print("God Mode for R6 is enabled.")
+    
+    -- Example: Prevent the character from taking damage for R6
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").HealthChanged:Connect(function(health)
+        if health < game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health then
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health = health
+        end
+    end)
+end
+
+-- Function to disable God Mode for R6
+local function DisableGodModeR6()
+    -- Add code to disable God Mode for R6 here
+    print("God Mode for R6 is disabled.")
+    
+    -- Example: Remove the HealthChanged connection for R6
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").HealthChanged:Disconnect()
+end
+
+-- Function to toggle God Mode for R6
+local function ToggleGodModeR6()
+    GodModeR6Enabled = not GodModeR6Enabled
+
+    if GodModeR6Enabled then
+        EnableGodModeR6()
+    else
+        DisableGodModeR6()
+    end
+end
+
+-- Function to enable God Mode for R15
+local function EnableGodModeR15()
+    -- Add code to enable God Mode for R15 here
+    print("God Mode for R15 is enabled.")
+    
+    -- Example: Prevent the character from taking damage for R15
+    -- You may need to adjust this part based on the actual implementation of R15
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit)
+        if hit:IsA("Humanoid") then
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health = 0
+        end
+    end)
+end
+
+-- Function to disable God Mode for R15
+local function DisableGodModeR15()
+    -- Add code to disable God Mode for R15 here
+    print("God Mode for R15 is disabled.")
+    
+    -- Example: Remove the Touched connection for R15
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Touched:Disconnect()
+end
+
+-- Function to toggle God Mode for R15
+local function ToggleGodModeR15()
+    GodModeR15Enabled = not GodModeR15Enabled
+
+    if GodModeR15Enabled then
+        EnableGodModeR15()
+    else
+        DisableGodModeR15()
+    end
+end
+
+-- Create a Toggle button for God Mode for R6
+local GodModeToggleR6 = Combat:CreateToggle({
+    Name = "God Mode R6",
+    StartingState = false,
+    Callback = ToggleGodModeR6
+})
+
+-- Create a Toggle button for God Mode for R15
+local GodModeToggleR15 = Combat:CreateToggle({
+    Name = "God Mode R15",
+    StartingState = false,
+    Callback = ToggleGodModeR15
+})
+
+-- Connect the OnGameLoaded function to the Loaded event
+game.Loaded:Connect(OnGameLoaded)
+
+
+
+end--end
+-- Check if the game is already loaded
+if game:IsLoaded() then
+    OnGameLoaded()
+else
+    -- Connect the OnGameLoaded function to the Loaded event
+    game.Loaded:Connect(OnGameLoaded)
+end
