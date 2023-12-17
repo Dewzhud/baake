@@ -6,7 +6,7 @@ local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/g
 
 -- Variable to store the state of God Mode
 local GodModeEnabled = false
-
+local SpiderModeEnabled = false
 -- Variable to store the state of Flying Mode
 local FlyingModeEnabled = false
 
@@ -90,7 +90,7 @@ local function ToggleFlyingMode()
 end
 
 -- Create a Toggle button for God Mode
-local GodModeToggle = Tab:CreateToggle({
+local GodModeToggle = Combat:CreateToggle({
     Name = "God Mode",
     StartingState = false,
     Callback = ToggleGodMode
@@ -102,6 +102,60 @@ local FlyingModeToggle = Blatant:CreateToggle({
     StartingState = false,
     Callback = ToggleFlyingMode
 })
+
+if SpiderModeEnabled then
+    EnableSpiderMode()
+else
+    DisableSpiderMode()
+end
+
+
+-- Function to enable Spider Mode
+local function EnableSpiderMode()
+-- Add code to enable Spider Mode here
+print("Spider Mode is enabled.")
+
+-- Example: Enable Spider Mode using RavenB4 API
+RavenConfig:SetStateEnabled("Spider", true)
+
+-- Example: Modify HumanoidRootPart properties for wall climbing
+local humanoidRootPart = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+humanoidRootPart.Anchored = false -- Unanchor to allow movement
+humanoidRootPart.CanCollide = false -- Disable collisions to allow passing through walls
+end
+
+-- Function to disable Spider Mode
+local function DisableSpiderMode()
+-- Add code to disable Spider Mode here
+print("Spider Mode is disabled.")
+
+-- Example: Disable Spider Mode using RavenB4 API
+RavenConfig:SetStateEnabled("Spider", false)
+
+-- Example: Restore HumanoidRootPart properties
+local humanoidRootPart = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+humanoidRootPart.Anchored = true -- Re-anchor to prevent unintended movement
+humanoidRootPart.CanCollide = true -- Enable collisions
+end
+
+-- Function to toggle Spider Mode state
+local function ToggleSpiderMode()
+SpiderModeEnabled = not SpiderModeEnabled
+
+if SpiderModeEnabled then
+    EnableSpiderMode()
+else
+    DisableSpiderMode()
+end
+end
+
+-- Create a Toggle button for Spider Mode
+local SpiderModeToggle = Combat:CreateToggle({
+Name = "Spider Mode",
+StartingState = false,
+Callback = ToggleSpiderMode
+})
+
 
 -- Connect the OnGameLoaded function to the Loaded event
 game.Loaded:Connect(OnGameLoaded)
