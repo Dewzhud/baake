@@ -4,60 +4,103 @@ shared.RavenB4Started = true
 -- Load RavenConfig from the provided URL
 local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20Main%20Loader'))()
 
--- Variable to store the state of God Mode for R15
-local GodModeR15Enabled = false
+-- Variable to store the state of God Mode
+local GodModeEnabled = false
+
+-- Variable to store the state of Flying Mode
+local FlyingModeEnabled = false
 
 -- Function to be executed when the game is loaded
 local function OnGameLoaded()
     -- Additional code that you want to execute when the game is loaded
     print("Game is loaded.")
     
-    -- Check if God Mode for R15 is enabled and execute accordingly
-    if GodModeR15Enabled then
-        EnableGodModeR15()
+    -- Check if God Mode is enabled and execute accordingly
+    if GodModeEnabled then
+        EnableGodMode()
     else
-        DisableGodModeR15()
+        DisableGodMode()
     end
 end
 
--- Function to enable God Mode for R15
-local function EnableGodModeR15()
-    -- Add code to enable God Mode for R15 here
-    print("God Mode for R15 is enabled.")
+-- Function to enable God Mode
+local function EnableGodMode()
+    -- Add code to enable God Mode here
+    print("God Mode is enabled.")
     
-    -- Example: Prevent the character from taking damage for R15
-    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit)
-        if hit:IsA("Humanoid") then
-            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health = 0
+    -- Example: Prevent the character from taking damage
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").HealthChanged:Connect(function(health)
+        if health < game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health then
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health = health
         end
     end)
+
+    -- Example: Enable Flying Mode
+    SetFlyingMode(true)
 end
 
--- Function to disable God Mode for R15
-local function DisableGodModeR15()
-    -- Add code to disable God Mode for R15 here
-    print("God Mode for R15 is disabled.")
+-- Function to disable God Mode
+local function DisableGodMode()
+    -- Add code to disable God Mode here
+    print("God Mode is disabled.")
     
-    -- Example: Remove the Touched connection for R15
-    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Touched:Disconnect()
+    -- Example: Remove the HealthChanged connection
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").HealthChanged:Disconnect()
+
+    -- Example: Disable Flying Mode
+    SetFlyingMode(false)
 end
 
--- Function to toggle God Mode for R15
-local function ToggleGodModeR15()
-    GodModeR15Enabled = not GodModeR15Enabled
+-- Function to toggle God Mode state
+local function ToggleGodMode()
+    GodModeEnabled = not GodModeEnabled
 
-    if GodModeR15Enabled then
-        EnableGodModeR15()
+    if GodModeEnabled then
+        EnableGodMode()
     else
-        DisableGodModeR15()
+        DisableGodMode()
     end
 end
 
--- Create a Toggle button for God Mode for R15
-local GodModeToggleR15 = Combat:CreateToggle({
-    Name = "God Mode R15",
+-- Function to set Flying Mode state
+local function SetFlyingMode(state)
+    FlyingModeEnabled = state
+    
+    -- Example: Use RavenB4 API to set the Humanoid state
+    RavenConfig:SetStateEnabled("Flying", state)
+    
+    -- Example: Move the character using HumanoidRootPart
+    local humanoidRootPart = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    
+    if state then
+        -- Example: Teleport the character to the player's position
+        humanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+    end
+end
+
+-- Function to toggle Flying Mode state
+local function ToggleFlyingMode()
+    FlyingModeEnabled = not FlyingModeEnabled
+
+    if FlyingModeEnabled then
+        EnableFlyingMode()
+    else
+        DisableFlyingMode()
+    end
+end
+
+-- Create a Toggle button for God Mode
+local GodModeToggle = Tab:CreateToggle({
+    Name = "God Mode",
     StartingState = false,
-    Callback = ToggleGodModeR15
+    Callback = ToggleGodMode
+})
+
+-- Create a Toggle button for Flying Mode
+local FlyingModeToggle = Blatant:CreateToggle({
+    Name = "Flying Mode",
+    StartingState = false,
+    Callback = ToggleFlyingMode
 })
 
 -- Connect the OnGameLoaded function to the Loaded event
