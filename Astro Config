@@ -1,44 +1,34 @@
 shared.RavenB4Started = false
+shared.WaterMark = "Astro"
+shared.WaterMarkColor = Color3.fromRGB(255,255,255) -- Put any RGB Value you want here!
 local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20NoModules%20Loader'))()
 
 -- สร้างหน้าต่าง Main
 Main = RavenConfig:CreateWindow("Main", UDim2.new(0.131578952, 0, 0.0475435816, 0), 0, "Combat")
 
--- สร้าง Toggle สำหรับ Infinite Jump
 Module = Main:CreateToggle({
-    Name = "Infinite Jump",
+    Name = "Infinite Jump Mobile",
     StartingState = false,
     Callback = function(isEnabled)
         local player = game.Players.LocalPlayer
-        local mouse = player:GetMouse()
         local userInputService = game:GetService("UserInputService")
 
         if isEnabled then
             -- สร้างตัวแปรสำหรับตรวจสอบสถานะการกระโดด
             local isJumping = false
 
-            -- ตั้งค่าการกระโดดเมื่อผู้เล่นคลิกที่ปุ่มหรือใช้ Space Bar
-            userInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 or
-                   input.UserInputType == Enum.UserInputType.MouseButton2 or
-                   input.KeyCode == Enum.KeyCode.Space then
-                    if not gameProcessedEvent then
-                        isJumping = true
-                        while isEnabled and isJumping do
-                            player.Character:FindFirstChildOfClass("Humanoid"):Move(Vector3.new(0, 10, 0))
-                            wait()
-                        end
-                    end
+            -- ตั้งค่าการกระโดดเมื่อผู้เล่นแตะที่หน้าจอ
+            userInputService.TouchTap:Connect(function()
+                isJumping = true
+                while isEnabled and isJumping do
+                    player.Character:FindFirstChildOfClass("Humanoid"):Move(Vector3.new(0, 10, 0))
+                    wait()
                 end
             end)
 
-            -- ตั้งค่าการหยุดกระโดดเมื่อผู้เล่นปล่อยปุ่มหรือ Space Bar
-            userInputService.InputEnded:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 or
-                   input.UserInputType == Enum.UserInputType.MouseButton2 or
-                   input.KeyCode == Enum.KeyCode.Space then
-                    isJumping = false
-                end
+            -- ตั้งค่าการหยุดกระโดดเมื่อผู้เล่นปล่อยหน้าจอ
+            userInputService.TouchEnded:Connect(function()
+                isJumping = false
             end)
         end
     end
