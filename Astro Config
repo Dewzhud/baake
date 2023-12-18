@@ -1,8 +1,8 @@
-shared.RavenB4Started = true
+shared.RavenB4Started = false
 local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20NoModules%20Loader'))()
 
 -- สร้างหน้าต่าง Main
-Main = RavenConfig:CreateWindow("Main", UDim2.new(0.131578952, 0, 0.0475435816, 0), 0, "home")
+Main = RavenConfig:CreateWindow("Main", UDim2.new(0.131578952, 0, 0.0475435816, 0), 0, "Combat")
 
 -- สร้าง Toggle สำหรับ Infinite Jump
 Module = Main:CreateToggle({
