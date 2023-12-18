@@ -1,8 +1,45 @@
--- Set RavenB4Started to true to indicate that RavenB4 has started
 shared.RavenB4Started = true
+local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20NoModules%20Loader'))()
 
--- Load RavenConfig from the provided URL
-local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20Main%20Loader'))()
+-- สร้างหน้าต่าง Main
+Main = RavenConfig:CreateWindow("Main", 0.131578952, 0, 0.0475435816, 0, "IconId")
 
-TabName = RavenConfig:CreateWindow("Main",0.131578952, 0, 0.0475435816, 0,"IconId")
+-- สร้าง Toggle สำหรับ Infinite Jump
+Module = Main:CreateToggle({
+    Name = "Infinite Jump",
+    StartingState = false,
+    Callback = function(isEnabled)
+        local player = game.Players.LocalPlayer
+        local mouse = player:GetMouse()
+        local userInputService = game:GetService("UserInputService")
 
+        if isEnabled then
+            -- สร้างตัวแปรสำหรับตรวจสอบสถานะการกระโดด
+            local isJumping = false
+
+            -- ตั้งค่าการกระโดดเมื่อผู้เล่นคลิกที่ปุ่มหรือใช้ Space Bar
+            userInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or
+                   input.UserInputType == Enum.UserInputType.MouseButton2 or
+                   input.KeyCode == Enum.KeyCode.Space then
+                    if not gameProcessedEvent then
+                        isJumping = true
+                        while isEnabled and isJumping do
+                            player.Character:FindFirstChildOfClass("Humanoid"):Move(Vector3.new(0, 10, 0))
+                            wait()
+                        end
+                    end
+                end
+            end)
+
+            -- ตั้งค่าการหยุดกระโดดเมื่อผู้เล่นปล่อยปุ่มหรือ Space Bar
+            userInputService.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or
+                   input.UserInputType == Enum.UserInputType.MouseButton2 or
+                   input.KeyCode == Enum.KeyCode.Space then
+                    isJumping = false
+                end
+            end)
+        end
+    end
+})
