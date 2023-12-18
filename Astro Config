@@ -34,3 +34,4 @@ Module = Main:CreateToggle({
         end
     end
 })
+shared.RavenB4Completed = true
