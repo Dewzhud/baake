@@ -1,5 +1,5 @@
 shared.RavenB4Started = true
-local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/Dewzhud/RavenB4/main/Astro%20Config'))()
+local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20NoModules%20Loader'))()
 shared.WaterMark = "Black Bird Config"
 shared.WaterMarkColor = Color3.fromRGB(255,255,255) -- Put any RGB Value you want here!
 
