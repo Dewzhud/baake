@@ -22,12 +22,12 @@ game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(u
 })
 
 Module = Combat:CreateToggle({
-    Name = "lock all mobs",
+    Name = "times lock mobs",
     StartingState = false,
     Callback = function(isEnabled)
         if isEnabled then
 local NPCsFolder = game.Workspace.NPCs 
-local LoopTime = 0.1 
+local LoopTime = 0.9
 
 -- Anchor และลูปทุกรัปเฟรม
 while true do
