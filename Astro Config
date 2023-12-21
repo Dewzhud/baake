@@ -1,37 +1,72 @@
-
-shared.WaterMark = "Astro"
-shared.WaterMarkColor = Color3.fromRGB(255,255,255) -- Put any RGB Value you want here!
 shared.RavenB4Started = true
-local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/goinglikeatrainlol/RavenB4Roblox/main/Raven%20NoModules%20Loader'))()
+local RavenConfig = loadstring(game:HttpGet('https://raw.githubusercontent.com/Dewzhud/RavenB4/main/Astro%20Config'))()
+shared.WaterMark = "Black Bird Config"
+shared.WaterMarkColor = Color3.fromRGB(255,255,255) -- Put any RGB Value you want here!
 
--- สร้างหน้าต่าง Main
-Main = RavenConfig:CreateWindow("Main", UDim2.new(0.131578952, 0, 0.0475435816, 0), 0, "Combat")
-
-Module = Main:CreateToggle({
-    Name = "Infinite Jump Mobile",
+-- สร้าง Toggle สำหรับ Infinite Jump
+Module = Combat:CreateToggle({
+    Name = "auto Sprint",
     StartingState = false,
     Callback = function(isEnabled)
-        local player = game.Players.LocalPlayer
-        local userInputService = game:GetService("UserInputService")
-
         if isEnabled then
-            -- สร้างตัวแปรสำหรับตรวจสอบสถานะการกระโดด
-            local isJumping = false
+local args = {
+    [1] = "Input",
+    [2] = "HumanoidControls",
+    [3] = 0,
+    [4] = "Sprint"
+}
 
-            -- ตั้งค่าการกระโดดเมื่อผู้เล่นแตะที่หน้าจอ
-            userInputService.TouchTap:Connect(function()
-                isJumping = true
-                while isEnabled and isJumping do
-                    player.Character:FindFirstChildOfClass("Humanoid"):Move(Vector3.new(0, 10, 0))
-                    wait()
-                end
-            end)
-
-            -- ตั้งค่าการหยุดกระโดดเมื่อผู้เล่นปล่อยหน้าจอ
-            userInputService.TouchEnded:Connect(function()
-                isJumping = false
-            end)
+game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
         end
     end
 })
-shared.RavenB4Completed = true
+
+Module = Combat:CreateToggle({
+    Name = "lock all mobs",
+    StartingState = false,
+    Callback = function(isEnabled)
+        if isEnabled then
+local NPCsFolder = game.Workspace.NPCs 
+local LoopTime = 0.1 
+
+-- Anchor และลูปทุกรัปเฟรม
+while true do
+    for _, mob in pairs(NPCsFolder:GetChildren()) do
+        if mob:IsA("Model") and mob:FindFirstChild("HumanoidRootPart") then
+ 
+            mob:SetPrimaryPartCFrame(mob.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0))
+            mob.PrimaryPart.Anchored = true
+        end
+    end
+    wait(LoopTime) 
+end
+        end
+    end
+})
+
+Module = Combat:CreateToggle({
+    Name = "fuck tard skid",
+    StartingState = false,
+    Callback = function(isEnabled)
+        if isEnabled then
+ -- สร้าง Part ที่ยึดติดกับ LocalPlayer
+local player = game.Players.LocalPlayer
+local part = Instance.new("Part") -- คุณอาจต้องปรับปรุงตามความต้องการของคุณ
+part.Size = Vector3.new(5, 5, 5)
+part.Anchored = true
+part.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 5, 0) -- ปรับตำแหน่งตามต้องการ
+part.Parent = game.Workspace
+
+-- สร้าง ProximityPrompt
+local proximityPrompt = Instance.new("ProximityPrompt")
+proximityPrompt.ActionText = "Press E to interact"
+proximityPrompt.Parent = part
+
+-- ให้ ProximityPrompt ทำงานเมื่อผู้เล่นกด E
+proximityPrompt.Triggered:Connect(function()
+    print("Proximity prompt triggered!")
+  
+end)
+        end
+    end
+})
