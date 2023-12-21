@@ -27,7 +27,7 @@ Module = Combat:CreateToggle({
     Callback = function(isEnabled)
         if isEnabled then
 local NPCsFolder = game.Workspace.NPCs 
-local LoopTime = 0.9
+local LoopTime = 0.1
 
 -- Anchor และลูปทุกรัปเฟรม
 while true do
