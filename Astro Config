@@ -22,12 +22,12 @@ game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(u
 })
 
 Module = Combat:CreateToggle({
-    Name = "times lock mobs",
+    Name = "lock all mobs",
     StartingState = false,
     Callback = function(isEnabled)
         if isEnabled then
 local NPCsFolder = game.Workspace.NPCs 
-local LoopTime = 0.1
+local LoopTime = 0.9 
 
 -- Anchor และลูปทุกรัปเฟรม
 while true do
@@ -45,28 +45,25 @@ end
 })
 
 Module = Combat:CreateToggle({
-    Name = "fuck tard skid",
+    Name = "spam",
     StartingState = false,
     Callback = function(isEnabled)
+
         if isEnabled then
- -- สร้าง Part ที่ยึดติดกับ LocalPlayer
-local player = game.Players.LocalPlayer
-local part = Instance.new("Part") -- คุณอาจต้องปรับปรุงตามความต้องการของคุณ
-part.Size = Vector3.new(5, 5, 5)
-part.Anchored = true
-part.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 5, 0) -- ปรับตำแหน่งตามต้องการ
-part.Parent = game.Workspace
+            while true do
 
--- สร้าง ProximityPrompt
-local proximityPrompt = Instance.new("ProximityPrompt")
-proximityPrompt.ActionText = "Press E to interact"
-proximityPrompt.Parent = part
-
--- ให้ ProximityPrompt ทำงานเมื่อผู้เล่นกด E
-proximityPrompt.Triggered:Connect(function()
-    print("Proximity prompt triggered!")
-  
-end)
+                local args = {
+                    [1] = "Input",
+                    [2] = "Charon's Tome",
+                    [3] = 0,
+                    [4] = "Cast",
+                    [5] = 0.7753139075999828
+                }
+                
+                game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+          
+   wait(0.5)
+    end
         end
     end
 })
