@@ -113,3 +113,31 @@ dev:AddButton({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4738.21533, 46.8596649, 612.845886, -0.769584715, -0.0124814985, -0.638422668, -0.0920667797, 0.991531014, 0.0915966779, 0.631872654, 0.129268929, -0.764216244)
   	end    
 })
+
+
+dev:AddButton({
+	Name = "OP LOCK all mobs",
+	Callback = function()
+		local Workspace = game:GetService("Workspace")
+
+		local function anchorAllMobs()
+			local NPCsFolder = Workspace:WaitForChild("NPCs")
+		
+			for _, mob in ipairs(NPCsFolder:GetChildren()) do
+				if mob:IsA("Model") then
+					local humanoid = mob:FindFirstChildOfClass("Humanoid")
+		
+					if humanoid then
+						humanoid:SetNetworkOwner(nil)
+					end
+				end
+			end
+		end
+		
+		-- à¹à¸£à¸´à¹à¸¡ loop à¹à¸à¸·à¹à¸­ anchor à¸à¸¸à¸ mob à¹à¸ folder NPCs
+		while true do
+			anchorAllMobs()
+			wait(1) -- à¸£à¸­ 1 à¸§à¸´à¸à¸²à¸à¸µ à¸«à¸£à¸·à¸­à¸à¸²à¸¡à¸à¸µà¹à¸à¸¸à¸à¸à¹à¸­à¸à¸à¸²à¸£
+		end
+	end    
+})
