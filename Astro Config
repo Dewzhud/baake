@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Rxr Shop", HidePremium = false})
 _G.auto = true
-
+_G.autoC = true
 function auto()
 	while _G.auto == true do
 		local args = {
@@ -18,6 +18,19 @@ function auto()
 		wait(.0001)
 	end
      end
+function autoC()
+		while _G.auto == true do
+          local args = {
+				[1] = "Input",
+				[2] = "Undead FistsDoombringer's Assault",
+				[3] = 0,
+				[4] = "Curse"
+			}
+			
+			game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+			wait(.0001)
+		end
+		end
 
 local Tab = Window:MakeTab({
 	Name = "farm",
@@ -71,6 +84,9 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpa
   	end    
 })
 
+local Section = Tab:AddSection({
+	Name = "auto doombringer assualt"
+})
 
 Tab:AddToggle({
 	Name = "spam doombringerassualt",
@@ -82,6 +98,15 @@ Tab:AddToggle({
 })
 
 
+
+Tab:AddToggle({
+	Name = "spam curse",
+	Default = false,
+	Callback = function(Value)
+		_G.autoC = Value
+		autoC()
+	end    
+})
 
 
 
