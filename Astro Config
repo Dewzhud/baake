@@ -94,3 +94,22 @@ shop:AddButton({
   	end    
 })
 
+
+local dev = Window:MakeTab({
+	Name = "divine",
+	PremiumOnly = false
+})
+
+dev:AddButton({
+	Name = "ninja quest",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4454.49268, 256.997894, -416.928162, -0.00327100046, 2.21216094e-08, -0.999994636, -2.98401694e-08, 1, 2.22193339e-08, 0.999994636, 2.9912691e-08, -0.00327100046)
+  	end    
+})
+
+dev:AddButton({
+	Name = "ninja dojo",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4738.21533, 46.8596649, 612.845886, -0.769584715, -0.0124814985, -0.638422668, -0.0920667797, 0.991531014, 0.0915966779, 0.631872654, 0.129268929, -0.764216244)
+  	end    
+})
