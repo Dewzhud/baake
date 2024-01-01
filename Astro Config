@@ -15,9 +15,9 @@ function auto()
 		
 		game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
 		
-		wait(0.1)
+		wait(.0001)
 	end
-end
+     end
 
 local Tab = Window:MakeTab({
 	Name = "farm",
@@ -72,10 +72,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpa
 })
 
 
-
-local Section = Tab:AddSection({
-	Name = "spam remote"
-})
 Tab:AddToggle({
 	Name = "spam doombringerassualt",
 	Default = false,
