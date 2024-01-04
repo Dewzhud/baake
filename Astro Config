@@ -59,6 +59,21 @@ end
   	end    
 })
 
+
+Tab:AddButton({
+	Name = "buy meat 56.5k",
+	Callback = function()
+		OrionLib:MakeNotification({
+			Name = "sdv trash",
+			Content = "no remote obf L",
+			Image = "rbxassetid://4483345998",
+			Time = 5
+		})
+		
+		
+
+  	end    
+})
 Tab:AddButton({
 	Name = "spawn grizz lv2",
 	Callback = function()
@@ -150,6 +165,12 @@ shop:AddButton({
   	end    
 })
 
+shop:AddButton({
+	Name = "tundra shrine",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15468.1602, 443.19632, -9593.00977, 0.9836303, -0.12907654, 0.125740722, -0.00156452728, 0.691646636, 0.722234368, -0.180191651, -0.710608363, 0.680122614)
+	end    
+})
 
 local dev = Window:MakeTab({
 	Name = "divine",
