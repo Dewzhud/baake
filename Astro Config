@@ -70,7 +70,7 @@ Tab:AddButton({
 			Time = 5
 		})
 		
-		
+
 
   	end    
 })
@@ -172,6 +172,13 @@ shop:AddButton({
 	end    
 })
 
+shop:AddButton({
+	Name = "slime shrine",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3398.0979, 89.2801285, -8709.75098, 0.717488468, 0.583927691, -0.379787832, 1.19938775e-07, 0.545225203, 0.838289618, 0.696570396, -0.601463139, 0.391192734)
+	end    
+})
+
 local dev = Window:MakeTab({
 	Name = "divine",
 	PremiumOnly = false
@@ -217,4 +224,9 @@ dev:AddButton({
 			wait(1) -- à¸£à¸­ 1 à¸§à¸´à¸à¸²à¸à¸µ à¸«à¸£à¸·à¸­à¸à¸²à¸¡à¸à¸µà¹à¸à¸¸à¸à¸à¹à¸­à¸à¸à¸²à¸£
 		end
 	end    
+})
+
+local dim = Window:MakeTab({
+	Name = "portal",
+	PremiumOnly = false
 })
