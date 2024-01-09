@@ -1,101 +1,295 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Rxr Shop", HidePremium = false})
+_G.auto = true
+_G.autoC = true
+_G.autoorc = true
+function auto()
+	while _G.auto == true do
+		local args = {
+			[1] = "Input",
+			[2] = "Undead FistsDoombringer's Assault",
+			[3] = 0,
+			[4] = "Fisticuffs",
+			[5] = 3,
+			[6] = true
+		}
+		
+		game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+		
+		wait(.0001)
+	end
+     end
+function autoC()
+		while _G.auto == true do
+          local args = {
+				[1] = "Input",
+				[2] = "Undead FistsDoombringer's Assault",
+				[3] = 0,
+				[4] = "Curse"
+			}
+			
+			game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+			wait(.0001)
+		end
+		end
 
-local Window = Fluent:CreateWindow({
-    Title = "DIvinve Shop script",
-    SubTitle = "by Ren",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(300, 300),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
-})
-
-
---Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
-local Tabs = {
-    Farm = Window:AddTab({ Title = "Farm", Icon = "life-buoy" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+function autoorc()
+		while _G.auto == true do
+   local args = {
+    [1] = "Input",
+    [2] = "OrcourQTraitorous Crown",
+    [3] = 0,
+    [4] = "Stealth"
 }
--- farm
-Tabs.Farm:AddParagraph({
-    Title = "Farm",
-    Content = "only teleport.\nnvm"
+
+   game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+wait(.0001)
+   local args = {
+    [1] = "Input",
+    [2] = "OrcourQTraitorous Crown",
+    [3] = 0,
+    [4] = "Explode"
+}
+
+game:GetService("Players").LocalPlayer.Character.Combat.RemoteEvent:FireServer(unpack(args))
+			wait(.0001)
+
+
+		end
+		end
+
+
+local Tab = Window:MakeTab({
+	Name = "farm",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "auto PRIVATE V "
+})
+
+Tab:AddButton({
+	Name = "auto Collect material",
+	Callback = function()
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+for i = 1, math.huge do
+    local args = {
+        [1] = "Collect",
+        [2] = tostring(i)
+    }
+
+    ReplicatedStorage:WaitForChild("RemoteEvent"):FireServer(unpack(args))
+
+    wait(0.1)
+end
+  	end    
+})
+
+
+Tab:AddButton({
+	Name = "buy meat 350 shigmy",
+	Callback = function()
+		OrionLib:MakeNotification({
+			Name = "sdv trash",
+			Content = "no remote obf L",
+			Image = "rbxassetid://4483345998",
+			Time = 5
+		})
+		
+local args = {
+    [1] = "ShopPurchase",
+    [2] = "Shigmy's Necessities",
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+
+  	end    
+})
+
+Tab:AddButton({
+	Name = "spawn grizz lv2",
+	Callback = function()
+      		local args = {
+    [1] = "Equip",
+    [2] = "3393213709:52004"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+  	end    
+})
+
+
+Tab:AddButton({
+	Name = "spawn grizz lv1",
+	Callback = function()
+      		local args = {
+    [1] = "Equip",
+    [2] = "3393213709:753"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "auto doombringer assualt"
+})
+
+Tab:AddToggle({
+	Name = "spam doombringerassualt",
+	Default = false,
+	Callback = function(Value)
+		_G.auto = Value
+		auto()
+	end    
 })
 
 
 
-Tabs.Farm:AddButton({
-    Title = "tomb",
-    Description = "tp to tomb shrine",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6103.68066, 205.998459, -507.822235, 0.12664111, -1.11310804e-07, -0.991948605, 3.03074259e-08, 1, -1.0834497e-07, 0.991948605, -1.63424829e-08, 0.12664111)
-    end
+Tab:AddToggle({
+	Name = "spam curse",
+	Default = false,
+	Callback = function(Value)
+		_G.autoC = Value
+		autoC()
+	end    
 })
-Tabs.Farm:AddButton({
-    Title = "brimstone",
-    Description = "tp to brimstone shrine",
-    Callback = function()
+
+
+
+local shop = Window:MakeTab({
+	Name = "shrine",
+	PremiumOnly = false
+})
+
+shop:AddButton({
+	Name = "brimstone shrine",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15035.6973, 529.49762, 96.4234619, -0.22295478, -2.77320966e-09, 0.97482878, -1.34577034e-08, 1, -2.33117581e-10, -0.97482878, -1.31709319e-08, -0.22295478)
-  	end
+  	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "spawn",
-    Description = "tp to spawn shrine",
-    Callback = function()
+shop:AddButton({
+	Name = "spawn shrine",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002)
-  	end
+  	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "savan",
-    Description = "tp to savannah shrine",
-    Callback = function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2816.61792, 226.797531, -4638.2793, 0.998450458, 2.87110815e-08, 0.0556482784, -2.94268663e-08, 1, 1.20432437e-08, -0.0556482784, -1.36621363e-08, 0.998450458)
-  	end
+shop:AddButton({
+	Name = "tomb shrine",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6103.68066, 205.998459, -507.822235, 0.12664111, -1.11310804e-07, -0.991948605, 3.03074259e-08, 1, -1.0834497e-07, 0.991948605, -1.63424829e-08, 0.12664111)
+  	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "elf",
-    Description = "tp to elf shrine",
-    Callback = function()
+shop:AddButton({
+	Name = "elf shrine",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3683.71118, 263.997925, 175.164627, 0.00929155666, 3.24475593e-08, -0.999956846, 7.2850554e-08, 1, 3.3125886e-08, 0.999956846, -7.31551992e-08, 0.00929155666)
-  	end
+  	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "tundra",
-    Description = "tp to tundra shrine",
-    Callback = function()
+shop:AddButton({
+	Name = "savan shrine",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2816.61792, 226.797531, -4638.2793, 0.998450458, 2.87110815e-08, 0.0556482784, -2.94268663e-08, 1, 1.20432437e-08, -0.0556482784, -1.36621363e-08, 0.998450458)
+  	end    
+})
+
+shop:AddButton({
+	Name = "tundra shrine",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15468.1602, 443.19632, -9593.00977, 0.9836303, -0.12907654, 0.125740722, -0.00156452728, 0.691646636, 0.722234368, -0.180191651, -0.710608363, 0.680122614)
-	end
+	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "slime",
-    Description = "tp to slime shrine",
-    Callback = function()
+shop:AddButton({
+	Name = "slime shrine",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3398.0979, 89.2801285, -8709.75098, 0.717488468, 0.583927691, -0.379787832, 1.19938775e-07, 0.545225203, 0.838289618, 0.696570396, -0.601463139, 0.391192734)
-	end
+	end    
 })
 
-
-Tabs.Farm:AddButton({
-    Title = "seaking",
-    Description = "seaking can spawn in this pos or more!",
-    Callback = function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1144.58911, 2.54499793, -8920.20703, -0.761818349, 2.34196573e-08, 0.64779073, 1.06250582e-07, 1, 8.8800256e-08, -0.64779073, 1.36477809e-07, -0.761818349)
-	end
-})
-Tabs.Farm:AddParagraph({
-    Title = "Divine",
-    Content = "only teleport.\nnvm"
+shop:AddButton({
+	Name = "seaking pos",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1466.53296, 71.8940048, -8571.19141, 0.313742936, -0.721516252, 0.617235482, -0.0014923542, 0.64968276, 0.760204017, -0.949506819, -0.239429757, 0.202756599)
+	end    
 })
 
-Tabs.Farm:AddButton({
-    Title = "dojo",
-    Description = "tp to ninja dojo",
-    Callback = function()
+local dev = Window:MakeTab({
+	Name = "divine",
+	PremiumOnly = false
+})
+
+dev:AddButton({
+	Name = "ninja quest",
+	Callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4454.49268, 256.997894, -416.928162, -0.00327100046, 2.21216094e-08, -0.999994636, -2.98401694e-08, 1, 2.22193339e-08, 0.999994636, 2.9912691e-08, -0.00327100046)
+  	end    
+})
+
+dev:AddButton({
+	Name = "ninja dojo",
+	Callback = function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4738.21533, 46.8596649, 612.845886, -0.769584715, -0.0124814985, -0.638422668, -0.0920667797, 0.991531014, 0.0915966779, 0.631872654, 0.129268929, -0.764216244)
-  	end
+  	end    
+})
+
+
+dev:AddButton({
+	Name = "OP LOCK all mobs",
+	Callback = function()
+		local Workspace = game:GetService("Workspace")
+
+		local function anchorAllMobs()
+			local NPCsFolder = Workspace:WaitForChild("NPCs")
+		
+			for _, mob in ipairs(NPCsFolder:GetChildren()) do
+				if mob:IsA("Model") then
+					local humanoid = mob:FindFirstChildOfClass("Humanoid")
+		
+					if humanoid then
+						humanoid:SetNetworkOwner(nil)
+					end
+				end
+			end
+		end
+		
+		-- à¹à¸£à¸´à¹à¸¡ loop à¹à¸à¸·à¹à¸­ anchor à¸à¸¸à¸ mob à¹à¸ folder NPCs
+		while true do
+			anchorAllMobs()
+			wait(1) -- à¸£à¸­ 1 à¸§à¸´à¸à¸²à¸à¸µ à¸«à¸£à¸·à¸­à¸à¸²à¸¡à¸à¸µà¹à¸à¸¸à¸à¸à¹à¸­à¸à¸à¸²à¸£
+		end
+	end    
+})
+
+local dim = Window:MakeTab({
+	Name = "portal",
+	PremiumOnly = false
+})
+
+dim:AddButton({
+	Name = "tomb ready",
+	Callback = function()
+
+	end    
+})
+
+
+local misc = Window:MakeTab({
+	Name = "Misc",
+	PremiumOnly = false
+})
+
+misc:AddToggle({
+	Name = "orcour dash",
+	Default = false,
+	Callback = function(Value)
+		_G.autoorc = Value
+		autoorc()
+	end    
 })
