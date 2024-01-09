@@ -84,7 +84,7 @@ Tabs.Farm:AddButton({
     Title = "seaking",
     Description = "seaking can spawn in this pos or more!",
     Callback = function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1466.53296, 71.8940048, -8571.19141, 0.313742936, -0.721516252, 0.617235482, -0.0014923542, 0.64968276, 0.760204017, -0.949506819, -0.239429757, 0.202756599)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1144.58911, 2.54499793, -8920.20703, -0.761818349, 2.34196573e-08, 0.64779073, 1.06250582e-07, 1, 8.8800256e-08, -0.64779073, 1.36477809e-07, -0.761818349)
 	end
 })
 Tabs.Farm:AddParagraph({
