@@ -216,7 +216,7 @@ shop:AddButton({
 shop:AddButton({
 	Name = "seaking pos",
 	Callback = function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1466.53296, 71.8940048, -8571.19141, 0.313742936, -0.721516252, 0.617235482, -0.0014923542, 0.64968276, 0.760204017, -0.949506819, -0.239429757, 0.202756599)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1112.44397, 2.54499769, -8589.08887, -0.47027719, -8.04910485e-08, -0.882518768, -9.25930337e-08, 1, -4.18650146e-08, 0.882518768, 6.20269276e-08, -0.47027719)
 	end    
 })
 
