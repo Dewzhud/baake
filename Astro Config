@@ -4,7 +4,6 @@ local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubuserconte
 --NotificationLibrary:SendNotification("Error", "I'm a cool message", 3)
 --NotificationLibrary:SendNotification("Info", "I'm a cool message", 3)
 
-local GG = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
 
 --[[create]]
@@ -21,17 +20,17 @@ Tab1:Seperator("teleport")
 
 Tab1:Button("brimstone",function()
     NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-   GG =  CFrame.new(15035.6973, 529.49762, 96.4234619, -0.22295478, -2.77320966e-09, 0.97482878, -1.34577034e-08, 1, -2.33117581e-10, -0.97482878, -1.31709319e-08, -0.22295478)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15035.6973, 529.49762, 96.4234619, -0.22295478, -2.77320966e-09, 0.97482878, -1.34577034e-08, 1, -2.33117581e-10, -0.97482878, -1.31709319e-08, -0.22295478)
 end)
 
 Tab1:Button("spawn",function()
     NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-   GG = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
 end)
 
 Tab1:Button("tomb",function()
     NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-   GG = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
 end)
 
 
