@@ -5,50 +5,87 @@ local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubuserconte
 --NotificationLibrary:SendNotification("Info", "I'm a cool message", 3)
 
 
-
+NotificationLibrary:SendNotification("Info", "LOADING SCRIPT : wait afew second ", 5)
 --[[create]]
 --[[Tab1:Slider("Slider",1,100,25,function(value)
     print(value)
 end)]]
-local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Kavo-Ui/main/Darkrai%20Ui", true))()
+wait(5)
+local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dewzhud/baake/main/darkraix.lua", true))()
 
-local Library = DarkraiX:Window("RXR","SHADOVIA","",Enum.KeyCode.RightControl);
+local Library = DarkraiX:Window("CLASSIC HUB","SHADOVIA","TOOLS",Enum.KeyCode.RightControl);
 --- create tap here
 Tab1 = Library:Tab("Main")
-
+Tab2 = Library:Tab("script")
+--- function and tab
 Tab1:Seperator("teleport")
+Tab1:Dropdown("Dropdown",{"spawn","tomb","elf","tundra","brimstone","savannah","slime","seaking pos"},function(value)
 
-Tab1:Button("brimstone",function()
-    NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15035.6973, 529.49762, 96.4234619, -0.22295478, -2.77320966e-09, 0.97482878, -1.34577034e-08, 1, -2.33117581e-10, -0.97482878, -1.31709319e-08, -0.22295478)
-end)
+    if value == "spawn" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002)
+          
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    elseif value == "tomb" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6103.68066, 205.998459, -507.822235, 0.12664111, -1.11310804e-07, -0.991948605, 3.03074259e-08, 1, -1.0834497e-07, 0.991948605, -1.63424829e-08, 0.12664111)
+      
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    elseif value == "elf" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3683.71118, 263.997925, 175.164627, 0.00929155666, 3.24475593e-08, -0.999956846, 7.2850554e-08, 1, 3.3125886e-08, 0.999956846, -7.31551992e-08, 0.00929155666)
+    
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    
+    elseif value == "tundra" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15468.1602, 443.19632, -9593.00977, 0.9836303, -0.12907654, 0.125740722, -0.00156452728, 0.691646636, 0.722234368, -0.180191651, -0.710608363, 0.680122614)
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    
+    elseif value == "brimstone" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15035.6973, 529.49762, 96.4234619, -0.22295478, -2.77320966e-09, 0.97482878, -1.34577034e-08, 1, -2.33117581e-10, -0.97482878, -1.31709319e-08, -0.22295478)
+    
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    elseif value == "savannah" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2816.61792, 226.797531, -4638.2793, 0.998450458, 2.87110815e-08, 0.0556482784, -2.94268663e-08, 1, 1.20432437e-08, -0.0556482784, -1.36621363e-08, 0.998450458)
+    
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    elseif value == "slime" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3398.0979, 89.2801285, -8709.75098, 0.717488468, 0.583927691, -0.379787832, 1.19938775e-07, 0.545225203, 0.838289618, 0.696570396, -0.601463139, 0.391192734)
+    
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    elseif value == "seaking" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1466.53296, 71.8940048, -8571.19141, 0.313742936, -0.721516252, 0.617235482, -0.0014923542, 0.64968276, 0.760204017, -0.949506819, -0.239429757, 0.202756599)
+    
+        NotificationLibrary:SendNotification("Success", "teleported", 2.5)
+    
+    end
+    end)
+    
 
-Tab1:Button("spawn",function()
-    NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
-end)
-
-Tab1:Button("tomb",function()
-    NotificationLibrary:SendNotification("Success", "teleported", 2.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002) 
-end)
-
-
+Tab1:Seperator("auto&spam")
 
 Tab1:Toggle("Toggle",false,function(value)
 print(value)
 end)
-
-
-
-Tab1:Dropdown("Dropdown",{"yo","sus","pro"},function(value)
-print(value)
-end)
-
-
 
 Tab1:Textbox("Textbox","",true,function(value)
 print(value)
 end)
 
 Tab1:Line()
+
+--[[script tab]]
+Tab2:Seperator("script")
+Tab2:Button("keyboard script",function()
+    NotificationLibrary:SendNotification("Success", "executed!", 1.5)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GGH52lan/GGH52lan/main/keyboard.txt"))()
+end)
+
+Tab2:Button("inf yield script",function()
+    NotificationLibrary:SendNotification("Success", "executed!", 1.5)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+Tab2:Button("TORA SDV script",function()
+    NotificationLibrary:SendNotification("Success", "executed!", 1.5)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ToraScript/Script/main/Shadovia'))();
+end)
+
+Tab2:Line()
