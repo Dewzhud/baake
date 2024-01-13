@@ -19,7 +19,7 @@ Tab1 = Library:Tab("Main")
 Tab2 = Library:Tab("script")
 --- function and tab
 Tab1:Seperator("teleport")
-Tab1:Dropdown("Dropdown",{"spawn","tomb","elf","tundra","brimstone","savannah","slime","seaking pos"},function(value)
+Tab1:Dropdown("Place",{"spawn","tomb","elf","tundra","brimstone","savannah","slime","seaking pos"},function(value)
 
     if value == "spawn" then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5411.05811, 164.698105, -2092.27368, -0.996315002, -4.53359164e-08, 0.0857697353, -5.15256993e-08, 1, -6.99536855e-08, -0.0857697353, -7.4115249e-08, -0.996315002)
