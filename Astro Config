@@ -1,179 +1,190 @@
-local Atlas = loadstring(game:HttpGet("https://rd2glory.com/Atlas.lua"))()
-
-local test = Atlas.new({
-    Name = "Script";
-
-    Credit = "Made by me!";
-    Color = Color3.fromRGB(164, 53, 90);
-    FullName = "Example Script";
-    UseLoader = true;
-    Bind = "LeftControl";
-    CheckKey = function(e) -- this can be nil to disable key checking
-        return e == "password"
-    end;
-    Discord = "https://discord.gg/yxXX7bxp"
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+local Window = Rayfield:CreateWindow({
+   Name = "Arrayfield Example Window",
+   LoadingTitle = "Arrayfield Interface Suite",
+   LoadingSubtitle = "by Arrays",
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Arrayfield",
+      Subtitle = "Key System",
+      Note = "Join the discord (discord.gg/sirius)",
+      SaveKey = false,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = "Hello"
+   }
+})
+local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
+local Tab2 = Window:CreateTab("Tab Example 2") -- Title, Image
+local Section = Tab:CreateSection("Section Example",false) -- The 2nd argument is to tell if its only a Title and doesnt contain element
+local Button = Tab:CreateButton({
+   Name = "Button Example",
+   Info = "Button info/Description.", -- Speaks for itself, Remove if none.
+   Interact = 'Changable',
+   Callback = function()
+   print('Pressed')
+   end,
+})
+local Toggle = Tab:CreateToggle({
+   Name = "Toggle Example",
+   Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      print(Value)
+   end,
+})
+local ColorPicker = Tab:CreateColorPicker({
+	Name = "Color Picker",
+	Info = 'info or description',
+	Color = Color3.fromRGB(2,255,255),
+	Flag = "ColorPicker1", 
+	Callback = function(Value)
+		print(Value)
+	end
+})
+local Slider = Tab:CreateSlider({
+   Name = "Slider Example",
+   Info = "Button info/Description.",
+   Range = {0, 100},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
+   Flag = "Slider1", 
+   Callback = function(Value)
+      print(Value)
+   end,
+})
+local Section2 = Tab:CreateSection("Inputs Examples",true)
+Tab:CreateInput({
+   Name = "Numbers Only",
+   Info = "Input info/Description.",
+   PlaceholderText = "Amount",
+   NumbersOnly = true,
+   OnEnter = true,
+   RemoveTextAfterFocusLost = true,
+   Callback = function(Text)
+      print(Text)
+   end,
+})
+Tab:CreateInput({
+   Name = "11 Characters Limit",
+   Info = "Input info/Description.",
+   PlaceholderText = "Text",
+   CharacterLimit = 15,
+   RemoveTextAfterFocusLost = true,
+   Callback = function(Text)
+      print(Text)
+   end,
+})
+Tab:CreateInput({
+   Name = "No RemoveTextAfterFocusLost",
+   Info = "Input info/Description.",
+   PlaceholderText = "Input",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+      print(Text)
+   end,
+})
+local Section3= Tab:CreateSection("Dropdown Examples",true)
+local MultiSelectionDropdown = Tab:CreateDropdown({
+   Name = "Multi Selection",
+   Options = {"Option 1","Option 2",'Option 3'},
+   CurrentOption = {"Option 1","Option 3"} ,
+   MultiSelection = true,
+   Flag = "Dropdown1",
+   Callback = function(Option)
+    print(Option)
+   end,
+})
+local SingleSelection = Tab:CreateDropdown({
+   Name = "Single Selection",
+   Options = {"Option 1","Option 2"},
+   CurrentOption = "Option 1",
+   MultiSelection = false,
+   Flag = "Dropdown2", 
+   Callback = function(Option)
+    print(Option)
+   end,
+})
+local Label = Tab:CreateLabel("Thanks for using Arrayfield, there were alot of issues but here we are!",Section)
+local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"},Section)
+local Sets = Tab:CreateSection('Set Functions',false)
+local SButton
+SButton = Tab:CreateButton({
+   Name = "Button Example",
+   Interact = 'Interact',
+   SectionParent = Sets,
+   Callback = function()
+    SButton:Set(nil,'New Interaction')
+   end
+})
+ Tab:CreateButton({
+   Name = "Dropdown Set",
+   Interact = 'Interact',
+   SectionParent = Sets,
+   Callback = function()
+   SingleSelection:Set('Option 1')
+   end
 })
 
-local p1 = test:CreatePage("Apples")
-local p2 = test:CreatePage("Oranges")
-
-local s1 = p1:CreateSection("Category 1")
-local s2 = p1:CreateSection("Category 2")
-local s3 = p2:CreateSection("Section 1")
-local s4 = p2:CreateSection("Section 2")
-
-s1:CreateToggle({ -- IMPORTANT: This function does not return anything, please modify flags directly in order to read or update toggle values. SCROLL TO BOTTOM OF PAGE TO SEE HOW TO MODIFY FLAGS
-    Name = "Toggle"; -- required: name of element
-    Flag = "MyToggle"; -- required: unique flag name to use
-    Default = true; -- optional: default value for toggle, will be used if config saving is disabled and there is no saved data, will be false if left nil
-    Callback = function(newValue) -- optional: function that will be called when toggled, it is reccomended to modify flags directly
-        print("Toggle:",newValue)
-    end;
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
-})
-
-s2:CreateSliderToggle({ -- IMPORTANT: This function does not return anything, please modify flags directly in order to read or update toggle values. SCROLL TO BOTTOM OF PAGE TO SEE HOW TO MODIFY FLAGS
-    Name = "Slider"; -- required: name of element
-    SliderFlag = "Slider"; -- required: unique flag name to use for slider element
-    ToggleFlag = "Toggle"; -- required: unique flag name to use for toggle element
-    Min = 0; -- required: slider minimum drag
-    Max = 10; -- required: slider maximum drag (Max>Min or else script will error)
-    AllowOutOfRange = true; -- optional: determines whether the player can enter values outside of range Min:Max when typing in the TextBox. If left nil, this is false
-    Digits = 2; -- optional: digits for rounding when dragging or entering values, default is 0 (whole numbers)
-    SliderDefault = 5; -- optional: default value for slider, will be used if config saving is disabled and there is no saved data, will be the Min value if left nil
-    ToggleDefault = false; -- optional: default value for toggle, will be used if config saving is disabled and there is no saved data, will be false if left nil
-    SliderCallback = function(newValue) -- optional: function that will be called whenever slider flag is changed
-        print("Slider:",newValue)
-    end;
-    ToggleCallback = function(newValue) -- optional: function that will be called whenever toggle flag is changed
-        print("Toggle:",newValue)
-    end;
-    SavingDisabled = true; -- this is how you would disable saving on a single element, just add this argument in
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Paragraph) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
-})
-
-local MyParagraph = s3:CreateParagraph("Hello world!") -- creates a paragraph element with "Hello world!" as the text content
-
-s4:CreateButton({
-    Name = "My Button"; -- required: name of element
-    Callback = function() -- required: function to be called when button is pressed
-        test:Notify({
-            Title = "My Notif";
-            Content = "Hello there."
-        })
-        print("Button pressed!")
+local LockTesting = Tab:CreateSection('Lockdown Section',false)
+local ToLock = {}
+Tab:CreateToggle({
+   Name = "Lockdown",
+   SectionParent = LockTesting,
+   Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+   CurrentValue = false,
+   Callback = function(Value)
+    if Value then
+     for _,v in ToLock do
+     v:Lock('Locked')
+     end
+     else
+      for _,v in ToLock do
+          v:Unlock('Locked')
+       end
     end
+   end,
 })
-
-s1:CreateTextBox({
-    Name = "TextBox"; -- required: name of element
-    Flag = "MyTextBox"; -- required: unique flag name to use
-    Callback = function(inputtedText,enterPressed) -- function to be called when the textbox's focus is lost
-        print("TextBox:",inputtedText,enterPressed)
-    end;
-    DefaultText = "DefaultText"; -- required: text that will be in the textbox when there is no configurations saved or config saving is disabled
-    PlaceholderText = "No Text"; -- optional: placeholder text that will show when no text is written
-    TabComplete = function(inputtedText) -- optional: function to be called when the player presses the tab button while the textbox is in focus. The replaced text will be whatever this function returns, if it returns nil, the text will not change
-        if inputtedText=="Road" then
-            return "RoadToGlory"
-        end
-    end;
-    ClearTextOnFocus = true; -- optional: whether to clear text when the textbox is focused, default is false
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
+ ToLock.Button = Tab:CreateButton({
+   SectionParent = LockTesting,
+   Name = "Button Example",
+   Info = "Button info/Description.", -- Speaks for itself, Remove if none.
+   Interact = 'Interact',
+   Callback = function()
+   print('Pressed')
+   end,
 })
-
-s2:CreateInteractable({
-    Name = "Interactable"; -- required: name of element
-    ActionText = "Execute"; -- required: text in the interactable button
-    Callback = function() -- function to be called when the interactable is activated
-       
-    end;
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
+ToLock.Toggle = Tab:CreateToggle({
+   SectionParent = LockTesting,
+   Name = "Toggle Example",
+   Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      print(Value)
+   end,
 })
-
-s3:CreateKeybind({
-    Name = "Keybind"; -- required: name of element
-    Flag = "Keybind"; -- required: unique flag name to use for element
-    Default = "E"; -- required: keycode name that will be used when config saving is disabled or there is no saved configs
-    Callback = function(key) -- optional: function to be called when the keybind is changed by the player
-        print("Keybind changed to",key.Name)
-    end;
-    KeyPressed = function() -- optional: function to be called when the keybind is pressed by their player (handles InputBegan for you basically)
-        print("Key pressed")
-    end;
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
+ToLock.ColorPicker = Tab:CreateColorPicker({
+	Name = "Color Picker",
+	Info = 'info or description',
+	SectionParent = LockTesting,
+	Color = Color3.fromRGB(2,255,255),
+	Flag = "ColorPicker1", 
+	Callback = function(Value)
+		print(Value)
+	end
 })
-
-local MyDropdown = s4:CreateDropdown({
-    Name = "Dropdown (with item selecting)"; -- required: name of element
-    Callback = function(item) -- required: function to be called an item in the dropdown is activated
-        print("Dropdown button pressed:",item)
-    end;
-    Options = {"Apple","Orange","Banana"}; -- required: dropdown options
-    ItemSelecting = true; -- optional: whether to control item selecting behavior in dropdowns (see showcase video), is false by default
-    DefaultItemSelected = "Deez"; -- optional: default item selected, will not run the callback and does not need to be from options table. This will be ignored if ItemSelecting is not true.
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
-})
-
--- update the dropdown
-game:GetService("RunService").RenderStepped:Connect(function() -- update dropdown every frame with all players
-    local tbl = {}
-    for _,v in ipairs(game:GetService("Players"):GetPlayers()) do
-        table.insert(tbl,v.Name)
-    end
-    MyDropdown:Update(tbl) -- uses namecalling, ":" instead of "."
-end)
-
-
-s1:CreateColorPicker({
-    Name = "Color Picker"; -- required: name of element
-    Flag = "ColorPicker"; -- required: unique flag name to use for element
-    Default = Color3.fromRGB(0,255,0); -- required: Color3 that will be used when config saving is disabled or there is no saved configs
-    Callback = function(newColor) -- optional: function to be called when the color is changed by the player
-        print("Color changed to",tostring(newColor))
-    end;
-    SavingDisabled = false;
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
-})
-
-local MyDropdown2 = s2:CreateDropdown({
-    Name = "Dropdown (without item selecting)"; -- required: name of element
-    Callback = function(item) -- required: function to be called an item in the dropdown is activated
-        print("Dropdown button pressed:",item)
-    end;
-    Options = {"Apple","Orange","Banana"}; -- required: dropdown options
-    ItemSelecting = false; -- optional: whether to control item selecting behavior in dropdowns (see showcase video), is false by default
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has an error"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = Atlas.Icons.Error; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
-}) -- the above has a valid WarningIcon ID which is why this is the only one that appears
-
-s3:CreateSlider({ -- IMPORTANT: This function does not return anything, please modify flags directly in order to read or update toggle values. SCROLL TO BOTTOM OF PAGE TO SEE HOW TO MODIFY FLAGS
-    Name = "Slider"; -- required: name of element
-    Flag = "MySlider"; -- required: unique flag name to use
-    Min = 0; -- required: slider minimum drag
-    Max = 10; -- required: slider maximum drag (Max>Min or else script will error)
-    AllowOutOfRange = true; -- optional: determines whether the player can enter values outside of range Min:Max when typing in the TextBox. If left nil, this is false
-    Digits = 2; -- optional: digits for rounding when dragging or entering values, default is 0 (whole numbers)
-    Default = 5; -- optional: default value for slider, will be used if config saving is disabled and there is no saved data, will be the Min value if left nil
-    Callback = function(newValue) -- optional: function that will be called whenever slider flag is changed
-        print("Slider:",newValue)
-    end;
-    -- Scroll to the bottom of the page to read more about the following two:
-    Warning = "This has a warning"; -- optional: this argument is used in all elements (except for Body) and will indicate text that will appear when the player hovers over the warning icon
-    WarningIcon = 12345; -- optional: ImageAssetId for warning icon, will only be used if Warning is not nil, default is yellow warning icon.
+ToLock.Slider = Tab:CreateSlider({
+   SectionParent = LockTesting,
+   Name = "Slider Example",
+   Info = "Button info/Description.",
+   Range = {0, 100},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
+   Flag = "Slider1", 
+   Callback = function(Value)
+      print(Value)
+   end,
 })
