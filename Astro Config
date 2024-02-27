@@ -61,6 +61,7 @@ TeleportToRandomModel()
 end)
 
 local SmallItems = PhantomForcesWindow:NewSection("Small Item")
+
 local function TeleportToModel(modelName)
     local itemsFolder = game.Workspace:FindFirstChild("Items")
     if itemsFolder then
@@ -90,9 +91,10 @@ else
     warn("Folder 'Items' not found")
 end
 
-SmallItems:CreateDropdown("List", models, 1, function(selectedModel)
+SmallItems:CreateDropdown("ModelsDropdown", models, 1, function(selectedModel)
     TeleportToModel(selectedModel)
 end)
+
 
 
 SmallItems:CreateButton("Cup", function()
