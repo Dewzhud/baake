@@ -152,31 +152,20 @@ local function TeleportToModel(modelName)
     end
 end
 
-SmallItems:CreateDropdown("Item list", {"Cup", "Gold Bar", "Key Card", "Old Phone","Small Bolt"}, 1, function(selectedModel)
+local models = {}
+local itemsFolder = game.Workspace:FindFirstChild("Items")
+if itemsFolder then
+    for _, model in ipairs(itemsFolder:GetChildren()) do
+        table.insert(models, model.Name)
+    end
+else
+    warn("Folder 'Items' not found")
+end
+
+SmallItems:CreateDropdown("List", models, 1, function(selectedModel)
     TeleportToModel(selectedModel)
 end)
 
--- สร้างฟังก์ชันสำหรับการเลือกโมเดลแบบสุ่ม
-local function TeleportToRandomModel()
-    local itemsFolder = game.Workspace:FindFirstChild("Items")
-    if itemsFolder then
-        local models = itemsFolder:GetChildren()
-        if #models > 0 then
-            local randomModelIndex = math.random(1, #models)
-            local randomModel = models[randomModelIndex].Name
-            TeleportToModel(randomModel)
-        else
-            Notification.new("error", "Error", "Not Found Direct Item", 2)
-        end
-    else
-        warn("Folder 'Items' not found")
-    end
-end
-
--- เพิ่มปุ่มสำหรับโทรทั้งหมดไปยังโมเดลแบบสุ่ม
-SmallItems:CreateButton("Teleport to Random Model", function()
-    TeleportToRandomModel()
-end)
 
 -----------------------
 local larger = largewindow:NewSection("large Item")
