@@ -61,6 +61,39 @@ TeleportToRandomModel()
 end)
 
 local SmallItems = PhantomForcesWindow:NewSection("Small Item")
+local function TeleportToModel(modelName)
+    local itemsFolder = game.Workspace:FindFirstChild("Items")
+    if itemsFolder then
+        local selectedModel = itemsFolder:FindFirstChild(modelName)
+        if selectedModel then
+            local primaryPart = selectedModel.PrimaryPart
+            if primaryPart then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(primaryPart.CFrame)
+            else
+                warn("Primary part not found in selected model")
+            end
+        else
+            warn("Selected model not found in folder 'Items'")
+        end
+    else
+        warn("Folder 'Items' not found")
+    end
+end
+
+local models = {}
+local itemsFolder = game.Workspace:FindFirstChild("Items")
+if itemsFolder then
+    for _, model in ipairs(itemsFolder:GetChildren()) do
+        table.insert(models, model.Name)
+    end
+else
+    warn("Folder 'Items' not found")
+end
+
+SmallItems:CreateDropdown("List", models, 1, function(selectedModel)
+    TeleportToModel(selectedModel)
+end)
+
 
 SmallItems:CreateButton("Cup", function()
  
@@ -83,7 +116,6 @@ end
 
 -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
 TeleportToRandomModel()
-
 end)
 
 SmallItems:CreateButton("Gold Bar🔔", function()
@@ -132,38 +164,6 @@ SmallItems:CreateButton("Air Horn📢", function()
     -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
     TeleportToRandomModel()
 
-end)
-local function TeleportToModel(modelName)
-    local itemsFolder = game.Workspace:FindFirstChild("Items")
-    if itemsFolder then
-        local selectedModel = itemsFolder:FindFirstChild(modelName)
-        if selectedModel then
-            local primaryPart = selectedModel.PrimaryPart
-            if primaryPart then
-                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(primaryPart.CFrame)
-            else
-                warn("Primary part not found in selected model")
-            end
-        else
-            warn("Selected model not found in folder 'Items'")
-        end
-    else
-        warn("Folder 'Items' not found")
-    end
-end
-
-local models = {}
-local itemsFolder = game.Workspace:FindFirstChild("Items")
-if itemsFolder then
-    for _, model in ipairs(itemsFolder:GetChildren()) do
-        table.insert(models, model.Name)
-    end
-else
-    warn("Folder 'Items' not found")
-end
-
-SmallItems:CreateDropdown("List", models, 1, function(selectedModel)
-    TeleportToModel(selectedModel)
 end)
 
 
