@@ -133,7 +133,50 @@ SmallItems:CreateButton("Air Horn📢", function()
     TeleportToRandomModel()
 
 end)
+local function TeleportToModel(modelName)
+    local itemsFolder = game.Workspace:FindFirstChild("Items")
+    if itemsFolder then
+        local selectedModel = itemsFolder:FindFirstChild(modelName)
+        if selectedModel then
+            local primaryPart = selectedModel.PrimaryPart
+            if primaryPart then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(primaryPart.CFrame)
+            else
+                warn("Primary part not found in selected model")
+            end
+        else
+            warn("Selected model not found in folder 'Items'")
+        end
+    else
+        warn("Folder 'Items' not found")
+    end
+end
 
+SmallItems:CreateDropdown("Item list", {"Cup", "Gold Bar", "Key Card", "Old Phone","Small Bolt"}, 1, function(selectedModel)
+    TeleportToModel(selectedModel)
+end)
+
+-- สร้างฟังก์ชันสำหรับการเลือกโมเดลแบบสุ่ม
+local function TeleportToRandomModel()
+    local itemsFolder = game.Workspace:FindFirstChild("Items")
+    if itemsFolder then
+        local models = itemsFolder:GetChildren()
+        if #models > 0 then
+            local randomModelIndex = math.random(1, #models)
+            local randomModel = models[randomModelIndex].Name
+            TeleportToModel(randomModel)
+        else
+            Notification.new("error", "Error", "Not Found Direct Item", 2)
+        end
+    else
+        warn("Folder 'Items' not found")
+    end
+end
+
+-- เพิ่มปุ่มสำหรับโทรทั้งหมดไปยังโมเดลแบบสุ่ม
+SmallItems:CreateButton("Teleport to Random Model", function()
+    TeleportToRandomModel()
+end)
 
 -----------------------
 local larger = largewindow:NewSection("large Item")
