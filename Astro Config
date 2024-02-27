@@ -90,14 +90,14 @@ local function TeleportToRandomModel()
             local randomModel = models[randomModelIndex].Name
             TeleportToModel(randomModel)
         else
-            warn("No models found in folder 'Items'")
+            Notification.new("error", "Error ", "not found", 3) 
         end
     else
         warn("Folder 'Items' not found")
     end
 end
 
-KillingCheats:CreateDropdown("ModelsDropdown", {"Model1", "Model2", "Model3", "Random"}, 1, function(selectedModel)
+KillingCheats:CreateDropdown("ModelsDropdown", {"Cup", "Old Phone", "Gold Bar", "Key Card"}, 1, function(selectedModel)
     if selectedModel == "Random" then
         TeleportToRandomModel()
     else
