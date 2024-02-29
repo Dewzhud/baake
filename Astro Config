@@ -86,7 +86,7 @@ local function TeleportToRandomModel()
     if itemsFolder then
         local models = itemsFolder:GetChildren()
         if #models > 0 then
-            local randomModelIndex = math.random(1, #models)
+            local randomModelIndex = math.random(2, #models)
             local randomModel = models[randomModelIndex].Name
             TeleportToModel(randomModel)
         else
@@ -97,7 +97,7 @@ local function TeleportToRandomModel()
     end
 end
 
-KillingCheats:CreateDropdown("ModelsDropdown", {"Cup", "Old Phone", "Gold Bar", "Key Card"}, 1, function(selectedModel)
+KillingCheats:CreateDropdown("Small Item", {"Cup", "Old Phone", "Gold Bar", "Keycard", "Air Horn", "Traffic Cone"}, 1, function(selectedModel)
     if selectedModel == "Random" then
         TeleportToRandomModel()
     else
@@ -106,127 +106,12 @@ KillingCheats:CreateDropdown("ModelsDropdown", {"Cup", "Old Phone", "Gold Bar", 
 end)
 
 
-
-
-SmallItems:CreateButton("Cup", function()
- 
- local function TeleportToRandomModel()
-  
-    local itemsFolder = game.Workspace:FindFirstChild("Items")
-    if itemsFolder then
-      
-        local cu = itemsFolder:FindFirstChild("Cup")
-        if cu then
-           
-            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(cu:GetPrimaryPartCFrame())
-        else
-            Notification.new("error", "Error!", "Not Found") 
-        end
+KillingCheats:CreateDropdown("Large Item", {"Large Axel", "Giant Drill", "Metal Sheet", "Engine", "Anchor"}, 1, function(selectedModel)
+    if selectedModel == "Random" then
+        TeleportToRandomModel()
     else
-        warn("ไม่พบโฟลเดอร์ Items")
+        TeleportToModel(selectedModel)
     end
-end
-
--- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
-TeleportToRandomModel()
-end)
-
-SmallItems:CreateButton("Gold Bar🔔", function()
-    
-    local function TeleportToRandomModel()
-        
-        local itemsFolder = game.Workspace:FindFirstChild("Items")
-        if itemsFolder then
-         
-            local gold = itemsFolder:FindFirstChild("Gold Bar")
-            if gold then
-            
-                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(gold:GetPrimaryPartCFrame())
-            else
-                Notification.new("error", "Error!", "Not Found") 
-            end
-        else
-            warn("ไม่พบโฟลเดอร์ Items")
-        end
-    end
-
-    -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
-    TeleportToRandomModel()
-    
-end)
-
-SmallItems:CreateButton("Air Horn📢", function()
-    -- ฟังก์ชันสำหรับการโทรทั้งหมด
-    local function TeleportToRandomModel()
-        -- หากมีโมเดลในโฟลเดอร์ "Items"
-        local itemsFolder = game.Workspace:FindFirstChild("Items")
-        if itemsFolder then
-            -- ค้นหาโมเดล "Air Horn" ในโฟลเดอร์
-            local airHorn = itemsFolder:FindFirstChild("Air Horn")
-            if airHorn then
-                -- โทรทั้งหมดไปยังตำแหน่งของโมเดล "Air Horn"
-                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(airHorn:GetPrimaryPartCFrame())
-            else
-                Notification.new("error", "Error!", "Not Found") 
-            end
-        else
-            warn("ไม่พบโฟลเดอร์ Items")
-        end
-    end
-
-    -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
-    TeleportToRandomModel()
-
 end)
 
 
------------------------
-local larger = largewindow:NewSection("large Item")
-
-larger:CreateButton("Large Axel⚙", function()
-    -- ฟังก์ชันสำหรับการโทรทั้งหมด
-    local function TeleportToRandomModel()
-        -- หากมีโมเดลในโฟลเดอร์ "Items"
-        local itemsFolder = game.Workspace:FindFirstChild("Items")
-        if itemsFolder then
-            -- ค้นหาโมเดล "Air Horn" ในโฟลเดอร์
-            local axel = itemsFolder:FindFirstChild("Large Axel")
-            if axel then
-                -- โทรทั้งหมดไปยังตำแหน่งของโมเดล "Air Horn"
-                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(axel:GetPrimaryPartCFrame())
-            else
-                Notification.new("error", "Error!", "Not Found") 
-            end
-        else
-            warn("ไม่พบโฟลเดอร์ Items")
-        end
-    end
-
-    -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
-    TeleportToRandomModel()
-
-end)
-
-larger:CreateButton("Giant Drill🔪", function()
-    -- ฟังก์ชันสำหรับการโทรทั้งหมด
-    local function TeleportToRandomModel()
-        -- หากมีโมเดลในโฟลเดอร์ "Items"
-        local itemsFolder = game.Workspace:FindFirstChild("Items")
-        if itemsFolder then
-            -- ค้นหาโมเดล "Air Horn" ในโฟลเดอร์
-            local drill = itemsFolder:FindFirstChild("Giant Drill")
-            if drill then
-                -- โทรทั้งหมดไปยังตำแหน่งของโมเดล "Air Horn"
-                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(drill:GetPrimaryPartCFrame())
-            else
-                Notification.new("error", "Error!", "Not Found") 
-            end
-        else
-            warn("ไม่พบโฟลเดอร์ Items")
-        end
-    end
-
-    -- เรียกใช้ฟังก์ชันเพื่อโทรทั้งหมด
-    TeleportToRandomModel()
-
-end)
